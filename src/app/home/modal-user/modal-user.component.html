@@ -1,0 +1,55 @@
+<div class = "container-fluid p-3">
+  <mat-icon class="float-end hover" (click)="closeModal()">close</mat-icon>
+
+<h1 class="titulo">Faça uma consulta com os seus dados</h1>
+<h2 class="subtitulo "> Digite o seu nome, e realize a consulta </h2>
+
+<form [formGroup]="form" class="row">
+  <div class="col-12 col-md-6 md-2">
+  <mat-form-field class="example-full-width w-100">
+    <mat-label>Doutor</mat-label>
+    <mat-select formControlName="medicoId">
+      @for (doutor of doutores; track doutor) {
+        <mat-option [value]="doutor.value">{{doutor.viewValue}}</mat-option>
+      }
+    </mat-select>
+    </mat-form-field>
+  </div>
+
+
+<div class="col-12 col-md-6 md-2">
+  <mat-form-field class="example-full-width w-100">
+    <mat-label>Tipo de Consulta</mat-label>
+    <mat-select formControlName="tipo">
+      @for (consulta of consultas; track consulta) {
+        <mat-option [value]="consulta.value">{{consulta.viewValue}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</div>
+
+  <div class="col-12 col-md-6 md-2">
+  <mat-form-field  class="example-full-width w-100" appearance="fill">
+    <mat-label>Escolha a data</mat-label>
+    <input matInput [matDatepicker]="picker" min="{{diaAtual | date:'yyyy-MM-dd'}}" [(ngModel)]="selectedMatDate" formControlName="data">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</div>
+
+<div class="col-12 col-md-6 md-2">
+    <mat-form-field class="example-full-width w-100">
+      <mat-label>Escolhe o Horário</mat-label>
+      <mat-select formControlName="horario">
+        @for (horario of horarios; track horario) {
+          <mat-option [value]="horario.value" [disabled]="horario.disabled">{{horario.viewValue}}</mat-option>
+        }
+      </mat-select>
+  </mat-form-field>
+</div>
+
+  <div class="modal-footer">
+    <button class="botao-primario float-end" type="submit" mat-button color="primary" (click)="marcarConsulta()">Salvar</button>
+  </div>
+</form>
+</div>

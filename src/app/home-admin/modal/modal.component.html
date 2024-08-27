@@ -1,0 +1,43 @@
+<div class = "container-fluid p-3">
+  <mat-icon class="float-end hover" (click)="closeModal()">close</mat-icon>
+
+<h1 class="titulo">Faça uma consulta para um paciente</h1>
+<h2 class="subtitulo "> Digite o email do paciente cadastrado, e realize a consulta </h2>
+
+<form [formGroup]="form" class="row">
+  <div class="col-12 col-md-6 md-2">
+  <mat-form-field class="example-full-width w-100">
+    <mat-label>Doutor</mat-label>
+    <input matInput formControlName="medicoId" type="text" placeholder="Nome do Doutor">
+    </mat-form-field>
+  </div>
+
+
+  <div class="col-12 col-md-6 md-2">
+  <mat-form-field class="example-full-width w-100">
+    <mat-label>Tipo de Consulta</mat-label>
+    <input matInput formControlName="tipo" type="text" placeholder="Digite o tipo de consulta">
+    </mat-form-field>
+  </div>
+
+  <div class="col-12 col-md-6 md-2">
+    <mat-form-field class="example-full-width w-100">
+      <mat-label>Data</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dia">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="col-12 col-md-6 md-2">
+    <mat-form-field class="example-full-width w-100">
+      <mat-label>Horário</mat-label>
+      <input matInput formControlName="horario" type="text" placeholder="Digite o horário de consulta (HH:MM)">
+  </mat-form-field>
+  </div>
+
+  <div class="modal-footer">
+    <button class="botao-primario float-end" type="submit" mat-button color="primary">Salvar</button>
+  </div>
+</form>
+</div>

@@ -1,0 +1,31 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="sidenav">
+          <div class="login-main-text">
+            <h2>Agende Consulta<br> Página de Login </h2>
+            <p>Faça o login ou registre no Agende Consulta.</p>
+        </div>
+      </div>
+      <div class="main">
+        <div class="col-md-6 col-sm-12">
+            <div class="login-form">
+              <form [formGroup]="loginForm" (ngSubmit)="login()">
+                  <div class="form-group">
+                    <label for="exampleInputEmail" class="form-label">Email:</label>
+                    <input formControlName="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp">
+
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword" class="form-label">Senha:</label>
+                    <input formControlName="password" class="form-control" id="exampleInputPassword" type="password">
+                    <div id="passwordHelp" class="form-text">Nunca compartilhe as suas senhas</div>
+                  </div>
+                  <button type="submit" class="btn btn-black">Login</button>
+                  <button routerLink="/registro" type="button" class="btn btn-secondary">Registrar</button>
+              </form>
+            </div>
+        </div>
+      </div>

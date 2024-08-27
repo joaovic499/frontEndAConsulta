@@ -1,0 +1,73 @@
+<app-menu></app-menu>
+
+<div class="container-fluid pt-3">
+  <div class="row">
+    <!-- Parte Esquerda da Tela -->
+    <div class="col-12 col-lg-9">
+      <div class="card-info">
+        <div class="row">
+          <div class="col-12 col-md-8">
+            <h1 class="titulo">Agende Consulta</h1>
+            <h3 class="subtitulo">
+              Mais eficiência para agendar sua <span>Consulta</span> sem sair de sua casa.
+              Chega de enfrentar filas enormes em hospitais, agora com a <span>Agende Consulta</span> a sua agenda de consulta fica até 3x mais rápida sem sair de casa.
+              <br>
+              Confira um resumo em nossas <span>Informações</span>
+            </h3>
+            <app-button class="iniciar" textButton="Iniciar" routerLink="/consulta"></app-button>
+          </div>
+          <div class="col-12 col-md-4">
+            <img src="../../assets/3922314-removebg-preview.png" width="85%" alt="Imagem">
+          </div>
+        </div>
+      </div>
+
+      <div class="card-info mt-4">
+        <h3 class="titulo">Suas consultas agendadas</h3>
+        <hr class="hr">
+
+        <!-- Consultas -->
+        <div class="row">
+          <div class="col-12" *ngFor="let consulta of consultas">
+            <div class="row mb-3">
+              <div class="col-1">
+                <mat-icon>account_circle</mat-icon>
+              </div>
+              <div class="col-3">
+                <p class="texto-p">{{ consulta.tipo }}</p>
+              </div>
+              <div class="col-4">
+                <p class="texto-p">{{ consulta.dia | date: 'dd/MM/yyyy' }}</p>
+              </div>
+              <div class="col-4">
+                <p class="texto-p">{{ consulta.horario }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- Fechando a coluna esquerda -->
+
+    <!-- Parte Direita da Tela -->
+    <div class="col-12 col-lg-3">
+      <div class="card-info">
+        <div class="container-perfil text-center">
+          <li><mat-icon>location_on</mat-icon> São José do Rio Preto - SP</li>
+          <br>
+          <h4>Seja Bem-vindo <span>{{ nome }}</span>!</h4>
+          <br>
+        </div>
+        <hr class="hr">
+        <p class="texto-p">
+          "Criada em 2024, a partir de um acordo de parceria com os Doutores João Victor e Nelson Henrique, a Agenda Consulta desenvolve soluções para pacientes, com foco na simplicidade e usabilidade de fazer uma consulta médica. Sempre atenta às alterações do cenário pessoal e alinhada às necessidades do mercado e expectativa de seus pacientes. A Agenda Consulta é sua maior parceira de consultas médicas."
+        </p>
+        <hr class="hr">
+        <ul class="list-unstyled">
+          <li><mat-icon>add</mat-icon> Adicione consultas</li>
+          <li><mat-icon>format_list_bulleted</mat-icon> Consulte cadastros</li>
+          <li><mat-icon>delete</mat-icon> Exclua Consultas</li>
+        </ul>
+      </div>
+    </div> <!-- Fechando a coluna direita -->
+  </div>
+</div>
