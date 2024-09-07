@@ -26,6 +26,9 @@ import { ModalUserComponent } from './home/modal-user/modal-user.component'
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './interceptor/Interceptor';
 import { CookieService } from 'ngx-cookie-service';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { LoginSucessComponent } from './alerts/login-sucess/login-sucess.component';
+
 
 
 @NgModule({
@@ -38,7 +41,8 @@ import { CookieService } from 'ngx-cookie-service';
     MenuComponent,
     MenuAdminComponent,
     ModalComponent,
-    ModalUserComponent
+    ModalUserComponent,
+    LoginSucessComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +59,8 @@ import { CookieService } from 'ngx-cookie-service';
     MatNativeDateModule,
     HttpClientModule,
     MatSelectModule,
+    MatSnackBarModule
+
 
 
   ],

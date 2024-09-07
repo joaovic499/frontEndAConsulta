@@ -13,26 +13,28 @@
         <div class="col-md-6 col-sm-12">
             <div class="login-form">
               <form [formGroup]="registerForm" (ngSubmit)="register()">
-                  <div class="form-group">
-                    <label for="exampleInputName" class="form-label">Nome:</label>
-                    <input formControlName="name" class="form-control" id="exampleInputName">
+
+                    <div class="form-group">
+                      <label for="exampleInputName" class="form-label">Nome:</label>
+                      <input formControlName="name" class="form-control" id="exampleInputName">
                     </div>
 
                     <div class="form-group">
-                    <label for="exampleInputEmail" class="form-label">Email:</label>
-                    <input formControlName="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword" class="form-label">Senha:</label>
-                    <input formControlName="password" class="form-control" id="exampleInputPassword" type="password">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword" class="form-label">Confirme a Senha: </label>
-                    <input formControlName="confirmpassword" class="form-control" id="exampleInputConfirmPassword" type="password">
-                </div>
-                <br>
+                      <label for="exampleInputEmail" class="form-label">Email:</label>
+                      <input formControlName="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp">
+                    </div>
 
-                  <button type="submit" class="btn btn-black">Registrar</button>
+                    <div class="form-group">
+                      <label for="exampleInputPassword" class="form-label">Senha:</label>
+                      <input formControlName="password" class="form-control" id="exampleInputPassword" type="password">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputPassword" class="form-label">Confirme a Senha: </label>
+                      <input formControlName="confirmpassword" class="form-control" id="exampleInputConfirmPassword" type="password">
+                    </div> <br>
+
+                    <button type="submit" class="btn btn-black">Registrar</button>
                   <button routerLink="/login" class="btn">Voltar</button>
               </form>
             </div>

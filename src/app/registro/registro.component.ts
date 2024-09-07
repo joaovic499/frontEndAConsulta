@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { catchError, of, tap } from 'rxjs';
 
 @Component({
   selector: 'app-registro',
@@ -9,12 +11,8 @@ import { Router } from '@angular/router';
 })
 export class RegistroComponent implements OnInit {
   public registerForm!: FormGroup;
-  private users = [
-    { email: 'joao@gmail.com', password: '123' },
-    { email: 'admin@admin.com', password: '123' }
-  ];
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
@@ -28,24 +26,29 @@ export class RegistroComponent implements OnInit {
   register(): void {
     const email = this.registerForm.value.email;
     const password = this.registerForm.value.password;
+    const name = this.registerForm.value.name;
     const confirmpassword = this.registerForm.value.confirmpassword;
 
     if (password !== confirmpassword) {
       alert("Senhas não conferem, tente novamente");
-      return;
+      return
     }
 
-    // Verificação estática de e-mail existente
-    const userExists = this.users.some(user => user.email === email);
+    this.http.post<any>("http://localhost:3000/auth/register", this.registerForm.value).pipe(
+      tap(() => {
+        alert("Usuário registrado com sucesso");
+        this.registerForm.reset();
+        this.router.navigate(['login']);
+      }),
 
-    if (userExists) {
-      alert('Email de usuário já cadastrado. Cadastre um usuário com outro email!');
-    } else {
-      // Simular registro do usuário
-      this.users.push({ email, password });
-      alert("Registrado com Sucesso");
-      this.registerForm.reset();
-      this.router.navigate(['login']);
-    }
+      catchError((error) => {
+        if  (error. error.message == "Email ja cadastrado, tente novamente") {
+          alert('Email ja cadastrado.')
+        } else {
+          alert("Erro ao registrar um usuário");
+        }
+          return of(null)
+      })
+    ).subscribe();
   }
 }

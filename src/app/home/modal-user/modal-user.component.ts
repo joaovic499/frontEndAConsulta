@@ -5,6 +5,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { jwtDecode } from 'jwt-decode';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthLoginService } from '../../auth-login.service';
+import { Action } from 'rxjs/internal/scheduler/Action';
 
 interface Consulta {
   value: string;
@@ -91,11 +92,11 @@ export class ModalUserComponent implements OnInit {
   }
 
   sucesso() {
-    alert('Consulta agendada com sucesso')
-    this.closeModal();
+    this.authLogin.messageSucess('Consulta marcada com sucesso', 'OK!');
   }
 
   marcarConsulta(){
+    debugger
     const pacienteId = this.idDecodificado();
     const horario = this.form.get('horario')?.value;
     const dia = this.form.get('dia')?.value;
@@ -125,5 +126,7 @@ export class ModalUserComponent implements OnInit {
   };
 
 }
+
+
 
 

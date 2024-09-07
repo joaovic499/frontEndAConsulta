@@ -20,8 +20,8 @@ import { HttpClient } from '@angular/common/http';
 export class LoginComponent implements OnInit {
 
   public loginForm!: FormGroup;
-
   private role: TipoUsuario | undefined;
+  loginAlert: {type: string; message: string}[] = []
 
   constructor(private formBuilder: FormBuilder, private authService: AuthLoginService, private router: Router) {}
 

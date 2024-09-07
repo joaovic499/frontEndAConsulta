@@ -1,10 +1,11 @@
 import { Router } from '@angular/router';
 import { TipoUsuario } from './login/tipoUsuario';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable, tap } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface Consulta {
   tipo: string;
@@ -16,6 +17,8 @@ interface Consulta {
   providedIn: 'root'
 })
 export class AuthLoginService {
+
+  public _snackBar = inject(MatSnackBar)
 
   constructor(private http: HttpClient, private cookieService: CookieService, private router: Router) { }
 
@@ -116,4 +119,10 @@ export class AuthLoginService {
       return true;
     }
   }
+
+  messageSucess(mensagem: "Consulta marcada com sucesso", acao: "OK!") {
+    this._snackBar.open(mensagem, acao)
+  }
 }
+
+
