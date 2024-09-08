@@ -28,10 +28,10 @@
   </mat-form-field>
 </div>
 
-  <div class="col-12 col-md-6 md-2">
-  <mat-form-field  class="example-full-width w-100" appearance="fill">
+<div class="col-12 col-md-6 md-2">
+  <mat-form-field class="example-full-width w-100" appearance="fill">
     <mat-label>Escolha a data</mat-label>
-    <input matInput [matDatepicker]="picker" min="{{diaAtual | date:'yyyy-MM-dd'}}" [(ngModel)]="selectedMatDate" formControlName="data">
+    <input matInput [matDatepicker]="picker" [min]="diaAtual" formControlName="dia">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>

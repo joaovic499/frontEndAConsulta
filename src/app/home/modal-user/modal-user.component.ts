@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { jwtDecode } from 'jwt-decode';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthLoginService } from '../../auth-login.service';
-import { Action } from 'rxjs/internal/scheduler/Action';
+import moment from 'moment';
+
 
 interface Consulta {
   value: string;
@@ -34,7 +34,7 @@ export class ModalUserComponent implements OnInit {
   diaAtual: any = new Date()
   form: FormGroup;
   selectedMatDate!: Date;
-  dataPassada!: Date;
+  formattedDia! : any
 
   consultas: Consulta[] = [
     {value: 'EXAME_SANGUE', viewValue: 'Exame de Sangue'},
@@ -64,14 +64,14 @@ export class ModalUserComponent implements OnInit {
     this.form = new FormGroup({
       medicoId: new FormControl(''),
       tipo: new FormControl(''),
-      data: new FormControl(new Date()),
+      dia: new FormControl(null),
       horario: new FormControl('')
     });
 
   }
   ngOnInit(): void {
     this.loadHorariosDisponiveis();
-    this.form.get('data')?.valueChanges.subscribe(() => {
+    this.form.get('dia')?.valueChanges.subscribe(() => {
       this.loadHorariosDisponiveis();
     })
   }
@@ -102,14 +102,23 @@ export class ModalUserComponent implements OnInit {
     const dia = this.form.get('dia')?.value;
     const tipo = this.form.get('tipo')?.value;
     const medicoId = this.form.get('medicoId')?.value;
-    this.authLogin.iniciarConsulta(pacienteId, tipo, horario, dia, medicoId).subscribe(() => {
+
+    this.formattedDia = moment(dia).format('YYYY-MM-DD');
+    
+    console.log('selectedMatDate:', this.selectedMatDate);
+    this.authLogin.iniciarConsulta(pacienteId, tipo, horario, this.formattedDia, medicoId).subscribe(() => {
+      this.closeModal();
       this.sucesso();
       this.loadHorariosDisponiveis();
     })
   }
 
+
+  
+  
+
   loadHorariosDisponiveis() {
-    const formatoData = this.form.get('data')?.value.toISOString().split('T')[0]; // Formato YYYY-MM-DD
+    const formatoData = this.form.get('dia')?.value.toISOString().split('T')[0]; // Formato YYYY-MM-DD
     this.authLogin.getHorariosIndisponiveis(formatoData).subscribe((indisponiveis: string[]) => {
         this.horarios = this.horarios.map(horario => ({
             ...horario,
@@ -117,13 +126,6 @@ export class ModalUserComponent implements OnInit {
         }));
     });
 }
-
-
-
-  myFilter = (d: Date | null): boolean => {
-    const day = (d || new Date()).getDay();
-    return day !== 0 && day !== 6;
-  };
 
 }
 
