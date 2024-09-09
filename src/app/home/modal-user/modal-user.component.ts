@@ -34,7 +34,7 @@ export class ModalUserComponent implements OnInit {
   diaAtual: any = new Date()
   form: FormGroup;
   selectedMatDate!: Date;
-  formattedDia! : any
+  formatoData! : any
 
   consultas: Consulta[] = [
     {value: 'EXAME_SANGUE', viewValue: 'Exame de Sangue'},
@@ -103,10 +103,10 @@ export class ModalUserComponent implements OnInit {
     const tipo = this.form.get('tipo')?.value;
     const medicoId = this.form.get('medicoId')?.value;
 
-    this.formattedDia = moment(dia).format('YYYY-MM-DD');
+    this.formatoData = moment(this.form.get('dia')?.value).utc().startOf('day').toISOString();
     
     console.log('selectedMatDate:', this.selectedMatDate);
-    this.authLogin.iniciarConsulta(pacienteId, tipo, horario, this.formattedDia, medicoId).subscribe(() => {
+    this.authLogin.iniciarConsulta(pacienteId, tipo, horario, this.formatoData, medicoId).subscribe(() => {
       this.closeModal();
       this.sucesso();
       this.loadHorariosDisponiveis();

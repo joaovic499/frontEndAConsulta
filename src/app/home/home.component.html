@@ -37,7 +37,7 @@
                 <p class="texto-p">{{ consulta.tipo }}</p>
               </div>
               <div class="col-4">
-                <p class="texto-p">{{ consulta.dia | date: 'dd/MM/yyyy' }}</p>
+                <p class="texto-p">{{ consulta.dia | date: 'dd/MM/yyyy':'UTC' }}</p>
               </div>
               <div class="col-4">
                 <p class="texto-p">{{ consulta.horario }}</p>

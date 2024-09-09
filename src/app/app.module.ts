@@ -10,12 +10,9 @@ import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegistroComponent } from './registro/registro.component';
 import { HomeComponent } from './home/home.component';
-import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { MatIconModule } from '@angular/material/icon'; // Adicionei a vírgula aqui
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MenuComponent } from './home/menu/menu.component';
-import { MenuAdminComponent } from './home-admin/menu-admin/menu-admin.component';
-import { ModalComponent } from './home-admin/modal/modal.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -37,10 +34,7 @@ import { LoginSucessComponent } from './alerts/login-sucess/login-sucess.compone
     LoginComponent,
     RegistroComponent,
     HomeComponent,
-    HomeAdminComponent,
     MenuComponent,
-    MenuAdminComponent,
-    ModalComponent,
     ModalUserComponent,
     LoginSucessComponent
   ],

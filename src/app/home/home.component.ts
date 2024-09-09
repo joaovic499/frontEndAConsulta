@@ -79,7 +79,7 @@ export class HomeComponent implements OnInit {
     console.log(pacienteId)
       if (pacienteId) {
         this.authLogin.getConsultas(pacienteId).subscribe((consultas: Consulta[]) => {
-          console.log('Consultas recebidas:', consultas); // Debugging
+          console.log('Consultas recebidas:', consultas);
           this.consultas = consultas;
         })
       }
